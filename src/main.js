@@ -1,7 +1,7 @@
 import "./style.css";
 import { k } from "./kaboomCtx";
-import { scaleFactor  } from "./const";
-import { displayDialoge,setCamScale } from "./utils";
+import { scaleFactor } from "./const";
+import { displayDialoge, setCamScale } from "./utils";
 
 k.loadSprite("spritesheet", "./spritesheet.png", {
   sliceX: 39,
@@ -42,7 +42,6 @@ k.scene("main", async () => {
     },
     "player",
   ]);
- (k);
 
   k.onResize(() => {
     setCamScale(k);
@@ -134,26 +133,24 @@ k.scene("main", async () => {
     });
   }
 
-    function stopAnims() {
-      if (player.direction === "down") {
-        player.play("idle-down");
-        return;
-      }
-      if (player.direction === "up") {
-        player.play("idle-up");
-        return;
-      }
-
-      player.play("idle-side");
+  function stopAnims() {
+    if (player.direction === "down") {
+      player.play("idle-down");
+      return;
+    }
+    if (player.direction === "up") {
+      player.play("idle-up");
+      return;
     }
 
-    k.onMouseRelease(stopAnims);
+    player.play("idle-side");
+  }
 
-    k.onKeyRelease(() => {
-      stopAnims();
-    });
+  k.onMouseRelease(stopAnims);
 
-  
+  k.onKeyRelease(() => {
+    stopAnims();
+  });
 });
 
 k.go("main");
